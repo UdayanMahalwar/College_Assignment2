@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+
+void printTriplet(int trip[20][3], int n){
+    for(int i=0;i<n;i++){
+        cout << trip[i][0] << " " << trip[i][1] << " " << trip[i][2] << endl;
+    }
+}
+
+int main(){
+    int r,c;
+    cout << "Enter rows and cols: ";
+    cin >> r >> c;
+
+    int mat[20][20];
+    cout << "Enter Matrix:" << endl;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            cin >> mat[i][j];
+        }
+    }
+
+
+    int A[20][3];
+    int count=1;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(mat[i][j]!=0){
+                A[count][0]=i;
+                A[count][1]=j;
+                A[count][2]=mat[i][j];
+                count++;
+            }
+        }
+    }
+    A[0][0]=r;
+    A[0][1]=c;
+    A[0][2]=count-1;
+
+    cout << "Original Triplet:" << endl;
+    printTriplet(A,count);
+
+
+    int T[20][3];
+    T[0][0]=A[0][1];
+    T[0][1]=A[0][0];
+    T[0][2]=A[0][2];
+
+    int k=1;
+    for(int col=0;col<A[0][1];col++){  
+        for(int i=1;i<count;i++){
+            if(A[i][1]==col){
+                T[k][0]=A[i][1];   
+                T[k][1]=A[i][0];   
+                T[k][2]=A[i][2];   
+                k++;
+            }
+        }
+    }
+
+    cout << "Transpose Triplet:" << endl;
+    printTriplet(T,count);
+
+    return 0;
+}
