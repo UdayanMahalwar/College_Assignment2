@@ -1,0 +1,92 @@
+#include<iostream>
+using namespace std;
+void reverse(string a)
+{
+    int size=a.length();
+    int s=0,e=size-1;
+    while(s<e)
+    {
+        swap(a[s],a[e]);
+        s++,e--;
+    }
+    cout<<a<<endl;
+}
+
+void concatenate(string a , string b)
+{
+    cout<<a+b<<endl;
+}
+
+void delvovel(string a)
+{
+   int i=0;
+   while(a[i]!='\0')
+   {
+       if(a[i]=='a'||a[i]=='e'||a[i]=='i'||a[i]=='o'||a[i]=='u')
+       {
+           a.erase(i,1);
+           i--;
+       }
+       i++;
+   }
+   cout<<a<<endl;
+}
+void sortst(string a)
+{
+        for(int i=0;i<=a.length();i++)
+        {
+            for(int j=0;j<a.length();j++)
+            {
+                if(a[j]>a[j+1])
+                {
+                    swap(a[j],a[j+1]);
+                }
+            }
+        }
+        cout<<a<<endl;
+}
+   
+void uptolow(string temp)
+{
+    int i=0;
+    while(temp[i]!='\0')
+    {
+        if(temp[i]>='A'&&temp[i]<='Z')
+        {
+            temp[i]=temp[i]-'A'+'a';
+        }
+        i++;
+    }
+    cout<<temp<<endl;
+    
+}
+
+int main()
+{
+    string a="hello";
+    string b=" world";
+//concatenate
+concatenate(a,b);
+
+//reverse
+
+reverse(a);
+
+//delete vovels
+
+delvovel(a);
+
+//sort the string 
+sortst(a);
+
+//uppercase to lowercase
+string temp="HeLlo WoRlD";
+uptolow(temp);
+
+
+    
+    
+    
+    
+    return 0;
+}

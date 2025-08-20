@@ -1,0 +1,96 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+void printDiagonal(vector<int> arr, int n) {
+    cout << "\nDiagonal Matrix:\n";
+    int idx=0;
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<n;j++) {
+            if(i==j) cout << arr[idx++] << " ";
+            else cout << 0 << " ";
+        }
+        cout << "\n";
+    }
+}
+
+void printTridiagonal(vector<int> arr, int n) {
+    cout << "\nTridiagonal Matrix:\n";
+    int idx=0;
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<n;j++) {
+            if(abs(i-j) <= 1) cout << arr[idx++] << " ";
+            else cout << 0 << " ";
+        }
+        cout << "\n";
+    }
+}
+
+void printLowerTriangular(vector<int> arr, int n) {
+    cout << "\nLower Triangular Matrix:\n";
+    int idx=0;
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<n;j++) {
+            if(i>=j) cout << arr[idx++] << " ";
+            else cout << 0 << " ";
+        }
+        cout << "\n";
+    }
+}
+
+void printUpperTriangular(vector<int> arr, int n) {
+    cout << "\nUpper Triangular Matrix:\n";
+    int idx=0;
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<n;j++) {
+            if(i<=j) cout << arr[idx++] << " ";
+            else cout << 0 << " ";
+        }
+        cout << "\n";
+    }
+}
+
+void printSymmetric(vector<int> arr, int n) {
+    cout << "\nSymmetric Matrix:\n";
+    int idx=0;
+    vector<vector<int>> mat(n, vector<int>(n,0));
+    
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<=i;j++) {
+            mat[i][j] = arr[idx++];
+            mat[j][i] = mat[i][j]; // mirror
+        }
+    }
+
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<n;j++) cout << mat[i][j] << " ";
+        cout << "\n";
+    }
+}
+
+int main() {
+    int n=4;  
+
+    //Diagonal 
+    vector<int> diag = {1,2,3,4};
+    printDiagonal(diag,n);
+
+    //Tridiagonal (3n-2)
+    vector<int> tri = {1,2, 3,4,5, 6,7,8, 9,10};
+    printTridiagonal(tri,n);
+
+    //Lower Triangular (n(n+1)/2)
+    vector<int> lower = {1,2,3,4, 5,6,7, 8,9, 10};
+    printLowerTriangular(lower,n);
+
+    //Upper Triangular (n(n+1)/2)
+    vector<int> upper = {1,2,3,4, 5,6,7, 8,9, 10};
+    printUpperTriangular(upper,n);
+
+    //Symmetric (n(n+1)/2)
+    vector<int> sym = {1,2,3,4, 5,6,7, 8,9, 10};
+    printSymmetric(sym,n);
+
+    return 0;
+}
